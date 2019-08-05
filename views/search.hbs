@@ -1,0 +1,53 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <h1>Bewave</h1>
+    </div>
+
+    <div class="col-md-6">
+
+      <form action="/search/coordinates" method="get">
+        <h2>Introduce coordinates get wave height</h2>
+        <div class="form-group">
+          <label for="lat-input">Latitude</label>
+          <input name="lat" type="number" class="form-control" id="lat-input">
+        </div>
+
+        <div class="form-group">
+          <label for="long-input">Longitude</label>
+          <input name="long" type="number" class="form-control" id="long-input">
+        </div>
+
+        <button type="submit" class="btn btn-dark">Search</button>
+        <a href="/search">apreta</a><hr>
+        <h3>Result: </h3><p>{{sum}} metres </p>
+      </form>
+    </div>
+       <div class="col-md-6">
+
+      <form action="/search/address" method="get">
+        <h2>Introduce coordinates get wave height</h2>
+        <div class="form-group">
+          <label for="address-input">Address</label>
+          <input name="address" type="text" class="form-control" id="address-input">
+        </div>
+
+        <button type="submit" class="btn btn-dark">Search address</button>
+ 
+        <h3>Result: </h3><p>{{sum}} metres </p>
+      </form>
+    </div>
+  </div>
+</div>
+  <h2 id = "coordinates"></h2>
+  <h1>Countries Info</h1>
+   <input id="theInput" type="text">
+   <button id="theButton">Get the country</button>
+  {{!-- <script>
+    document.getElementById('theButton').onclick = () => {
+    alert('ta los huevos')}
+  </script> --}}
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="../javascripts/index.js"></script>
