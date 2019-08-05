@@ -1,18 +1,48 @@
-document.addEventListener('DOMContentLoaded', () => {
 
-    console.log('IronGenerator JS imported successfully!');
-  
-  }, false);
+window.onload = () =>
+{
 
-  // const getCoordinates = address => {
-  //   axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyAQn79ofulVcJxbKOb1tGmPG6GuA7bPojM`)
-  //   .then(response => {printInfo(response.data)
-  //   console.log(response.data)})
-  //   .catch(err=> console.log(err))
-  // }
-  
-  // document.getElementById('theButton').onclick = () => {
-  //   const inputValue = document.getElementById('theInput').value
-  //   getCoordinates(inputValue)
-  // }
+
+    const myMap = new google.maps.Map(
+
+        document.getElementById('map'),
+        {
+            center: { lat: 40.3922581, lng: -3.698573845 },
+            zoom: 10
+        }
+    )
+
+    // const geoCoder = new google.maps.Geocoder()
+
+    // geoCodeAdress(geoCoder, myMap)
+
+
+// const geoCodeAdress = (geoCoder, resultsMap) => {
+
+//     let address = document.getElementById('address').value
+
+//     geoCoder.geocode(
+//         { 'address': address },
+//         (results, status) => {
+
+//             console.log(results)
+
+
+//             new google.maps.Marker({
+//                 map: resultsMap,
+//                 position: results[0].geometry.location
+//             })
+
+//             resultsMap.setCenter(results[0].geometry.location)
+
+//         }
+//     )
+// }
+
+
+
+
+
+ }
+
 
