@@ -2,7 +2,8 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
-
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const uploadCloud = require('../configs/cloudinary.config')
 const nodemailer = require('nodemailer')
 
 // Bcrypt to encrypt passwords
@@ -25,9 +26,12 @@ router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
 
   const {username, email, password} = req.body
+  
+  console.log(req.file)
+  
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
     return;
@@ -43,7 +47,7 @@ router.post("/signup", (req, res, next) => {
     const hashPass = bcrypt.hashSync(password, salt);
 
 
-    User.create({username, email, password: hashPass} )
+    User.create({username, email, password: hashPass, photo: req.file.secure_url} )
     .then(res.render('auth/login'))
     .catch(err => console.log(err))
     
@@ -80,13 +84,13 @@ router.get('/newSpot', ensureLogin.ensureLoggedIn(), (req,res)=> {
 })
 router.post('/newSpot', ensureLogin.ensureLoggedIn(), (req,res)=> {
   console.log(req.body.spot)
-  User.findById(req.user._id)
-   .then(x => {
-     console.log(x)
-     x.spots.push(req.body.spot)
-    res.render('auth/mySpots', {spots: x.spots})
-    console.log(x)
+  User.findByIdAndUpdate(req.user._id, {$push: {spots: req.body.spot}}, 
+    function(err, result){
+      if(err){
+          console.log(err);
+      }}
+    )
+    .then(x => res.render('auth/mySpots', {user: req.user}))
 
-   })
 })
 module.exports = router

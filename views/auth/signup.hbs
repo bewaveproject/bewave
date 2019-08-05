@@ -1,6 +1,6 @@
 <h2>Signup</h2>
 
-<form action="/auth/signup" method="POST" id="form-container">
+<form action="/auth/signup" method="POST" id="form-container"  enctype="multipart/form-data" >
   <label for="username">Username</label>
   <input id="username" type="text" name="username" placeholder="JonSnow">
   <br><br>
@@ -9,6 +9,11 @@
   <input id="email-input" type="email" name="email" placeholder="JonSnow@winterfell">
 
   <br><br>
+
+  <div>
+    <label>Foto de perfil</label>
+    <input type="file" name="photo"><br><br>
+  </div>
 
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
