@@ -1,6 +1,35 @@
-<h1>Hola soy tu perfil</h1>
-<h2>{{user.username}}</h2>
-<a href="/auth/mySpots">My Spots</a><br>
-<a href="/auth/myPlanet">My Planet</a><br>
-<a href="/auth/myFriends">My Friends</a>
-<img src="{{user.photo}}" alt=""><style>img{width:30%}</style>
+<div class="container">
+
+  <div class="row align-items-center">
+
+    <div class="col-8">
+    <h1>{{user.username}}</h1>
+    <ul class="nav justify-space-between">
+        <li class="nav-item">
+            <a class="nav-link active" href="/auth/mySpots"> Spots</a>
+        </li>
+        <li class="nav-item">
+             <a class="nav-link" href="/auth/myPlanet"> Planet</a>
+         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/auth/myFriends"> Friends</a>
+        </li>
+         <li class="nav-item">
+            <a class="nav-link" href="/auth/new-post"> New post</a>
+        </li>
+    </ul>
+    </div>
+    <div class="col"></div>
+    <img class= "profile-img" src="{{user.photo}}" alt=""><style>img{width:100%; padding-top: 10px}.profile-img{width:30%}</style>
+    </div>  
+</div>
+</div>
+<div class="container">
+  <div class="row">
+      {{#each user.posts}}
+    <div class="col-4 order-last">
+        <img  src="{{photo}}" alt="">
+    </div>
+      {{/each}}
+  </div>
+</div>

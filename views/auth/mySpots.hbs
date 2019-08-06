@@ -1,6 +1,6 @@
 <h1>Hello, I am your spots</h1>
-<p>{{user.username}}</p>
-
-<p>{{user.spots}}</p>
-
+{{!-- <p>{{user.username}}</p> --}}
+{{#each user.spots}}
+<p class = "spot-names">{{name}}</p>
+{{/each}}
 <a href="/auth/newSpot">Add new spot</a>

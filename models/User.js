@@ -6,7 +6,8 @@ const userSchema = new Schema({
   password: String,
   email: String,
   photo: String,
-  spots: {type: Array, default: []}
+  spots: [{type: Schema.Types.ObjectId, ref: 'Spot'}],
+  posts: [{type: Schema.Types.ObjectId, ref: 'Post'}]
 }, {
   timestamps: {
     createdAt: 'created_at',
