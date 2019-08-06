@@ -1,3 +1,8 @@
 <h1>Hello, I am your planet</h1>
 <p>{{user.username}}</p>
 <figure id="mapSpots"></figure>
+{{#each user.spots}}
+<p class = "spot-names">{{name}}</p>
+{{/each}}
+
+<script src="/javascripts/index.js"></script>
