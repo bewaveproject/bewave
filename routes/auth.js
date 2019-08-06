@@ -90,7 +90,9 @@ router.get('/myFriends', ensureLogin.ensureLoggedIn(), (req,res)=> {
 })
 router.get('/myPlanet', ensureLogin.ensureLoggedIn(), (req,res)=> {
   //console.log(req.user)
-  res.render("auth/myPlanet", { user: req.user });
+  User.findById(req.user._id)
+  .populate('spots')
+  .then(userFeatures => res.render("auth/myPlanet", { user: userFeatures}))
 })
 router.get('/newSpot', ensureLogin.ensureLoggedIn(), (req,res)=> {
   //console.log(req.user)
