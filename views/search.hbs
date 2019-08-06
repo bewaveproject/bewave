@@ -7,26 +7,6 @@
     <div class="col-md-6">
       <h1>Bewave</h1>
     </div>
-
-    {{!-- <div class="col-md-4">
-
-      <form action="/search/coordinates" method="get">
-        <h2>Introduce coordinates get wave height</h2>
-        <div class="form-group">
-          <label for="lat-input">Latitude</label>
-          <input name="lat" type="number" class="form-control" id="lat-input">
-        </div>
-
-        <div class="form-group">
-          <label for="long-input">Longitude</label>
-          <input name="long" type="number" class="form-control" id="long-input">
-        </div>
-
-        <button type="submit" class="btn btn-dark">Search</button>
-        <a href="/search">apreta</a><hr>
-        <h3>Result: </h3><p>{{sum}} metres </p>
-      </form>
-    </div> --}}
        <div class="col-md-4">
 
       <form action="/search/address" method="get">
@@ -38,16 +18,22 @@
 
         <button type="submit" class="btn btn-dark button-submit"  id="submit-address">Search address</button>
 
-         <figure id="map"></figure>
+        <figure id="map"></figure>
  
+<<<<<<< HEAD
         <h3>Result: </h3><p id = "sumWaveHeight">{{sumWaveHeight}} </p>
                     </h3><p>{{sumSwellHeight}}  </p>
                     </h3><p>{{sumSwellDirection}}  </p>
                     </h3><p>{{sumWaterTemperature}}  </p>
+=======
+        <h3>Result: </h3><p>{{sumWaveHeight}} </p>
+                    </h3><p>{{sumSwellHeight}} </p>
+                    </h3><p>{{sumSwellDirection}} </p>
+                    </h3><p>{{sumWaterTemperature}} </p>
+>>>>>>> 9d3199d23d9c09a0f14f5af9ef0d3abee2537d0a
                     </h3><p>{{sumAirTemperature}} </p>
 
-
-
+	
       </form>
     </div>
   </div>

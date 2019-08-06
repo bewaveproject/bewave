@@ -1,7 +1,13 @@
 window.onload = () =>
 {
+<<<<<<< HEAD
     
     
+=======
+
+
+    const geoCoder = new google.maps.Geocoder()
+>>>>>>> 9d3199d23d9c09a0f14f5af9ef0d3abee2537d0a
     const myMap = new google.maps.Map(
         
         document.getElementById('map'),
@@ -10,6 +16,7 @@ window.onload = () =>
             zoom: 10
         }
     )
+<<<<<<< HEAD
     document.getElementById("submit-address").onclick = (e) => {
         e.preventDefault()
         console.log(document.getElementById('address-input').value)
@@ -94,5 +101,44 @@ window.onload = () =>
 
 
  
+=======
+
+    // geoCodeAdress(geoCoder, myMap)
+
+
+const geoCodeAdress = (geoCoder, resultsMap) => {
+
+    let address = document.getElementById('address-input').value
+
+    axios.get('/search/address', (req, res, next) => {
+
+
+    geoCoder.geocode(
+        { 'address': address },      // Para que coja la direccion que metas en la casilla
+        (results, status) => {
+
+            console.log(results)
+
+
+            new google.maps.Marker({                  //marcador de ese sitio
+                map: resultsMap,
+                position: results[0].geometry.location
+            })
+
+            resultsMap.setCenter(results[0].geometry.location)
+
+        }
+    )
+})
+  }
+
+    
+
+
+
+
+
+ }
+>>>>>>> 9d3199d23d9c09a0f14f5af9ef0d3abee2537d0a
 
 
