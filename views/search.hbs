@@ -16,27 +16,78 @@
           <input name="address" type="text" class="form-control" id="address-input">
         </div>
 
-        <button type="submit" class="btn btn-dark button-submit"  id="submit-address">Search address</button>
+        <button type="submit" class="btn btn-submit"  id="submit-address">Search address</button>
 
         <figure id="map"></figure>
- 
-        <h3>Result: </h3><p id = "sumWaveHeight">{{sumWaveHeight}} </p>
-                    </h3><p>{{sumSwellHeight}}  </p>
-                    </h3><p>{{sumSwellDirection}}  </p>
-                    </h3><p>{{sumWaterTemperature}}  </p>
-                    </h3><p>{{sumAirTemperature}} </p>
+</div>
 
-	
-      </form>
-    </div>
+
+<div class="container">
+  <div class="row justify-content-center">
+
+    <div class="col-md-2">
+ <article class="quitar"> 
+  <h2> Wave Height</h2>
+<svg id="fillgauge1" width="65%" height="250"></svg>
+</article>
+</div>
+<div class="col-md-2">
+<article> 
+  <h2> Swell Height</h2>
+<svg id="fillgauge2" width="65%" height="250"></svg>
+</article>
+</div>
+
+<div class="col-md-2">
+<article> 
+  <h2> Swell Direction</h2>
+<svg id="fillgauge3" width="65%" height="250"></svg>
+</article>
+
+</div>
+
+
+<div class="col-md-2">
+<article> 
+  <h2> Water Temperature</h2>
+<svg id="fillgauge4" width="65%" height="250"></svg>
+</article>
+
+</div>
+
+
+<div class="col-md-2">
+<article> 
+  <h2> Air Temperature</h2>
+<svg id="fillgauge5" width="65%" height="250"></svg>
+</article>
+</div>
+
   </div>
 </div>
-  {{!-- <h2 id = "coordinates"></h2>
-  <h1>Countries Info</h1>
-   <input id="theInput" type="text">
-   <button id="theButton">Get the country</button> --}}
-  {{!-- <script>
-    document.getElementById('theButton').onclick = () => {
-    alert('ta los huevos')}
-  </script> --}}
+<div class="container">
+
+  <div class="row-md-8">
+
+    </div>
+        <h3>Result: </h3><p id="sumWaveHeight">{{sumWaveHeight}} </p>
+                    </h3><p id="sumSwellHeight">{{sumSwellHeight}}  </p>
+                    </h3><p id = "sumSwellDirection">{{sumWaterTemperature}}  </p>
+                    </h3><p id = "sumWaterTemperature">{{sumWaterTemperature}}  </p>
+                    </h3><p id = "sumAirTemperature">{{sumAirTemperature}} </p> 
+
+  <script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
+    <script src="/javascripts/liquidFillGauge.js" language="JavaScript"></script>
+
+
+
+
+
+{{!-- <svg id="fillgauge6" width="30%" height="250"></svg> --}}
+
+
+  
+    
+  
+  
   <script src="/javascripts/script.js"></script>
