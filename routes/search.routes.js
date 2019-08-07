@@ -2,11 +2,18 @@ const express = require('express')
 const router  = express.Router()
 const fetch = require('node-fetch')
 const axios = require('axios')
+const Post = require('../models/post.model')
 let lat = 58.5
 let lng = 17.8
 router.get('/search', (req, res, next) => {
-    //console.log(req.body)
-    res.render('search')
+    Post.find({})
+    .then(photos => {
+      let array = []
+      for(let i = photos.length; i > photos.length - 7; i--){
+        array.push(photos[i])
+      }
+      res.render('search', {photos: array})
+    })
 })
 
 // router.get('/search/address', (req, res, next) => {

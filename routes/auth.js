@@ -16,7 +16,7 @@ const bcryptSalt = 10;
 
 
 router.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
+  res.render("auth/login", { "message": req.flash("error"), user: req.user });
 });
 
 router.post("/login", passport.authenticate("local", {
@@ -176,6 +176,7 @@ router.get('/join/:id',(req,res,next)=> {
   .populate('creatorId')
   .then(plans => res.render('auth/plan', {plans}))
 })
+
 
 
 

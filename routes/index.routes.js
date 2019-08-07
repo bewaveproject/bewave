@@ -13,6 +13,6 @@ const lng = 17.8
 //     .then((response) => response.json())
 //     .then((jsonData) => console.log(jsonData))
 
-router.get('/', (req, res, next) => res.render('index'))
+router.get('/', (req, res, next) => res.render('index', {user: req.user}))
 
 module.exports = router
