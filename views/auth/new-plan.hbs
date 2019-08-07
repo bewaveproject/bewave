@@ -1,0 +1,26 @@
+<h1>Create new plan</h1> <hr>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <form action="/auth/new-plan" method="post" >
+        <div class="form-group">
+          <label for="place-input">Place</label>
+          <input type="text" name="place" class="place-input">
+        </div>
+        <div class="form-group">
+          <label for="date-input">When?</label>
+          <input type="date" name="date" class="date-input">
+        </div>
+        <div class="form-group">
+          <label for="description-input">What is it about?</label>
+          <input type="textarea" name="description" class="description-input">
+        </div>
+        <button type="submit">Post</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<a href="/auth/plans">Plans</a>
+
+<h2>{{plan.place}}</h2>

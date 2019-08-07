@@ -7,7 +7,9 @@ const userSchema = new Schema({
   email: String,
   photo: String,
   spots: [{type: Schema.Types.ObjectId, ref: 'Spot'}],
-  posts: [{type: Schema.Types.ObjectId, ref: 'Post'}]
+  posts: [{type: Schema.Types.ObjectId, ref: 'Post'}],
+  friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
+  plans: [{type: Schema.Types.ObjectId, ref: 'Plan'}]
 }, {
   timestamps: {
     createdAt: 'created_at',

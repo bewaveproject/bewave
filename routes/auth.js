@@ -6,6 +6,7 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const uploadCloud = require('../configs/cloudinary.config')
 const nodemailer = require('nodemailer')
 const Post = require('../models/post.model')
+const Plan = require('../models/plan.model')
 const Spot = require('../models/spot.model')
 const axios = require('axios')
 
@@ -65,66 +66,80 @@ router.get("/logout", (req, res) => {
 
 const ensureLogin = require("connect-ensure-login");
 
+//----------PROFILE-------------
+
 router.get('/profile', ensureLogin.ensureLoggedIn(), (req,res)=> {
   User.findById(req.user._id)
   .populate('posts')
   .then(userFeatures => {
     res.render("auth/profile", { user: userFeatures })
   })
-})
-router.get('/mySpots', ensureLogin.ensureLoggedIn(), (req,res)=> {
-  //console.log(req.user)
-  User.findById(req.user._id)
-  .populate('spots')
-  .then((userFeatures)=> {
-    //console.log(userFeatures)
-    res.render("auth/mySpots", { user: userFeatures})
-    //console.log(req.user.spots[0])
-    //console.log('hola')
-  })
 
+  router.get('/profile/:id', ensureLogin.ensureLoggedIn(), (req,res)=> {
+  User.findById(req.params.id)
+  .populate('posts')
+  .populate('spots')
+  .populate('plans')
+  .then(userFeatures => {
+    console.log(userFeatures)
+    res.render("auth/otherProfile", { user: userFeatures })
+  })
 })
+
+router.get('/profile/:id/planet', ensureLogin.ensureLoggedIn(), (req,res)=> {
+  User.findById(req.params.id)
+  .populate('spots')
+  .then(userFeatures => res.render("auth/myPlanet", { user: userFeatures}))
+})
+})
+
+//----------FRIENDS-------------
+
 router.get('/myFriends', ensureLogin.ensureLoggedIn(), (req,res)=> {
-  //console.log(req.user)
-  res.render("auth/myFriends", { user: req.user });
+  User.findById(req.user._id)
+  .populate('friends')
+  .then(userFeatures => res.render("auth/myFriends", { user: userFeatures }))
+  .catch(err => console.log(err))
 })
+router.post('/myFriends', (req,res)=> {
+
+  User.findOne({username: req.body.name})
+  .then(x=> 
+    User.findByIdAndUpdate(req.user._id, {$push: {friends: x._id}}, function(err, result){if(err)console.log(err)}))
+  .then(() => res.render("auth/myFriends", {user: req.user}))
+  .catch(err => console.log(err))
+})
+
+//----------PLANET-------------
+
 router.get('/myPlanet', ensureLogin.ensureLoggedIn(), (req,res)=> {
-  //console.log(req.user)
   User.findById(req.user._id)
   .populate('spots')
   .then(userFeatures => res.render("auth/myPlanet", { user: userFeatures}))
 })
+
+///-------SPOTS----------
+
 router.get('/newSpot', ensureLogin.ensureLoggedIn(), (req,res)=> {
-  //console.log(req.user)
   res.render("auth/add-spot", { user: req.user });
 })
-router.post('/newSpot', ensureLogin.ensureLoggedIn(), (req,res)=> {
-  //console.log(req.body.spot)
+
+router.post('/add-spot', ensureLogin.ensureLoggedIn(), (req,res)=> {
   const {name} = req.body
   const creatorId = req.user._id
   axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${name}&key=AIzaSyAQn79ofulVcJxbKOb1tGmPG6GuA7bPojM`)
-  // .then(response => {
-  //   const lat = response.data.results[0].geometry.location.lat
-  //   const lng = response.data.results[0].geometry.location.lng
-  //   return {lat,lng}
-  // })
-  .then((response) => Spot.create({name, lat: response.data.results[0].geometry.location.lat, lng: response.data.results[0].geometry.location.lng, creatorId}))
-  .then((x)=>
-  User.findByIdAndUpdate(req.user._id, {$push: {spots: x._id}}, {new: true}
-    // function(err, result){
-    //   if(err){
-    //       console.log(err);
-    //   }}
-    )
-    // .populate('spots')
-    )
-  .then(x => {
-    //console.log(x)
-    res.render('auth/mySpots', {user: req.user})
-  })
-
+  .then(response => Spot.create({name, lat: response.data.results[0].geometry.location.lat, lng: response.data.results[0].geometry.location.lng, creatorId}))
+  .then(x => User.findByIdAndUpdate(req.user._id, {$push: {spots: x._id}}, {new: true}))
+  .then(x => res.redirect('/auth/myPlanet'))
+  .catch(err => console.log(err))
 })
 
+router.get('/spot/delete/:id',(req,res) => 
+  User.findByIdAndUpdate(req.user._id, { $pull: {spots: req.params.id } }, {new: true})
+  .then(() => res.redirect('/auth/myPlanet'))
+  .catch(err => console.log(err)))
+
+///-------POSTS----------
 
 router.get('/new-post', ensureLogin.ensureLoggedIn(),(req,res,next)=> res.render('auth/new-post'))
 router.post('/new-post',uploadCloud.single('photo'), (req,res,next)=>{
@@ -132,16 +147,34 @@ router.post('/new-post',uploadCloud.single('photo'), (req,res,next)=>{
     const photo = req.file.secure_url
     const creatorId = req.user._id
     Post.create({content,picName, photo, creatorId})
-    .then((x)=>
-    {
-      User.findByIdAndUpdate(req.user._id, {$push: {posts: x._id}}, 
-      function(err, result){
-        if(err){
-            console.log(err);
-        }})
-    }
-      )
+    .then(x => User.findByIdAndUpdate(req.user._id, {$addToSet: {posts: x._id}}, function(err, result){if(err)console.log(err)}))
     .then(()=> res.redirect('/auth/profile'))
+})
+
+//----------PLANS-------------
+
+router.get('/new-plan', ensureLogin.ensureLoggedIn(),(req,res,next)=> res.render('auth/new-plan'))
+router.post('/new-plan', (req,res) => {
+  const {place, date, description} = req.body
+  const people = []
+  const creatorId = req.user._id
+  Plan.create({place, date, description, people, creatorId})
+  .then(newPlan => res.render('auth/new-plan', {plan: newPlan}))
+})
+
+router.get('/plans', ensureLogin.ensureLoggedIn(),(req,res,next)=> {
+  Plan.find({})
+  .populate('creatorId')
+  .then(plans => res.render('auth/plans', {plans}))
+  .catch(err => console.log(err))
+})
+
+router.get('/join/:id',(req,res,next)=> {
+  User.findByIdAndUpdate(req.user._id, {$push: {plans: req.params.id}}, function(err, result){if(err)console.log(err)})
+  Plan.findByIdAndUpdate(req.params.id, {$push: {people: req.user._id}}, function(err, result){if(err)console.log(err)})
+  .populate('people')
+  .populate('creatorId')
+  .then(plans => res.render('auth/plan', {plans}))
 })
 
 

@@ -1,0 +1,23 @@
+<div class="container">
+
+  <div class="row align-items-center">
+
+    <div class="col-8">
+    <h1>{{user.username}}</h1>
+    <a href="/auth/profile/{{user._id}}/planet" class = "btn btn-dark">Planet</a>
+    </div>
+    <div class="col"></div>
+    <img class= "profile-img" src="{{user.photo}}" alt=""><style>img{width:100%; padding-top: 10px}.profile-img{width:30%}</style>
+    </div>  
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+      {{#each user.posts}}
+    <div class="col-4">
+        <img  src="{{photo}}" alt="">
+    </div>
+      {{/each}}
+  </div>
+</div>
+

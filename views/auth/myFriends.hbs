@@ -1,2 +1,14 @@
 <h1>Hello, I am your friends</h1>
 <p>{{user.username}}</p>
+  <form action="/auth/myFriends" method="post">
+        <div class="form-group">
+          <label for="name">Search</label>
+          <input type="text" name="name" class="name">
+          <button type="submit">Search</button>
+        </div>
+  </form>
+{{#each user.friends}}
+<p><img class = "prof-photo"src={{photo}}> <a href="/auth/profile/{{_id}}">{{username}}</a> </p>
+{{/each}}
+
+<style>.prof-photo{width:10%}</style>

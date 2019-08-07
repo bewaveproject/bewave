@@ -1,0 +1,12 @@
+<h1>Plan</h1>
+
+{{#each plans}}
+<h2>{{place}}</h2>
+<p>{{date}}</p>
+<p>{{description}}</p>
+<p>Creator:    {{creatorId}}</p>
+{{#each people}}
+<p>{{username}}</p> <a href="/auth/profile/{{_id}}" class = "btn btn-dark">View profile</a>
+{{/each}}
+{{/each}}
+<a href="/" class="btn btn-sm btn-dark">Inicio</a> 

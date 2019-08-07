@@ -1,8 +1,9 @@
 <h1>Hello, I am your planet</h1>
 <p>{{user.username}}</p>
-<figure id="mapSpots"></figure>
+<figure id="map"></figure>
 {{#each user.spots}}
-<p class = "spot-names">{{name}}</p>
+<p class = "spot-names">{{name}}<a href="/auth/spot/delete/{{_id}}">Delete</a> </p>
 {{/each}}
+<a href="/auth/newSpot" class = "btn btn-dark">Add new spot</a>
 
-<script src="/javascripts/index.js"></script>
+<script src="/javascripts/mySpots.js"></script>
