@@ -6,6 +6,7 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const uploadCloud = require('../configs/cloudinary.config')
 const nodemailer = require('nodemailer')
 const Post = require('../models/post.model')
+const Comment = require('../models/comment.model')
 const Plan = require('../models/plan.model')
 const Spot = require('../models/spot.model')
 const axios = require('axios')
@@ -165,16 +166,47 @@ router.post('/new-plan', (req,res) => {
 router.get('/plans', ensureLogin.ensureLoggedIn(),(req,res,next)=> {
   Plan.find({})
   .populate('creatorId')
-  .then(plans => res.render('auth/plans', {plans}))
+  .populate('comments')
+  .populate('people')
+  .then(plans => res.render('auth/plans', {plans, user: req.user}))
   .catch(err => console.log(err))
 })
 
-router.get('/join/:id',(req,res,next)=> {
-  User.findByIdAndUpdate(req.user._id, {$push: {plans: req.params.id}}, function(err, result){if(err)console.log(err)})
-  Plan.findByIdAndUpdate(req.params.id, {$push: {people: req.user._id}}, function(err, result){if(err)console.log(err)})
+router.get('/myPlans', ensureLogin.ensureLoggedIn(),(req,res,next)=> {
+  let myplans = []
+  Plan.find({people: req.user._id})
   .populate('people')
   .populate('creatorId')
-  .then(plans => res.render('auth/plan', {plans}))
+  .populate('comments')
+  .then(plans => res.render('auth/plans', {plans, user: req.user}))
+  .catch(err => console.log(err))
+})
+
+router.get('/view-details/:id', (req,res) => {
+  Plan.findByIdAndUpdate(req.params.id, {$addToSet: {people: req.user._id}}, function(err, result){if(err)console.log(err)})
+  .populate('people')
+  .populate('creatorId')
+  .populate('comments')
+  .then(plans => res.render('auth/plan', {plans, user: req.user}))
+})
+router.get('/join/:id',(req,res,next)=> {
+  User.findByIdAndUpdate(req.user._id, {$addToSet: {plans: req.params.id}}, function(err, result){if(err)console.log(err)})
+  Plan.findByIdAndUpdate(req.params.id, {$addToSet: {people: req.user._id}}, function(err, result){if(err)console.log(err)})
+  .populate('people')
+  .populate('creatorId')
+  .populate('comments')
+  .then(plans => res.render('auth/plan', {plans, user: req.user}))
+})
+
+router.post('/new-comment/:id', (req,res) => {
+  creatorId = req.user._id
+  creatorName = req.user.username
+  comment = req.body.comment
+  Comment.create({creatorId, creatorName, comment})
+  .then(newComment =>
+  Plan.findByIdAndUpdate(req.params.id, {$addToSet: {comments: newComment._id}}, function(err, result){if(err)console.log(err)}))
+  .then(x => res.redirect('/auth/plans'))
+  .catch(err => console.log(err))
 })
 
 

@@ -1,13 +1,18 @@
 <h1>Plans</h1>
 
 {{#each plans}}
-<h2>{{place}}</h2>
-<p>{{date}}</p>
-<p>{{description}}</p>
-<p>{{creatorId}}</p>
-<p>{{people}}</p>
-<a href="/auth/join/{{_id}}" class="btn btn-sm btn-dark">Join</a> 
-
+<h2>Place: {{place}}</h2>
+<p>Date: {{date}}</p>
+<p>Description: {{description}}</p>
+<p>Plan created by: <a href="/auth/profile/{{creatorId._id}}">{{creatorId.username}}</a></p>
+{{#each comments}}
+<p><a href="/auth/profile/{{creatorId}}">{{creatorName}}</a>: {{comment}} </p>
 {{/each}}
-
+{{#each people}}
+<p>Gentuza que se apunta al plan: <a href="/auth/profile/{{_id}}">{{username}}</a> </p>
+{{/each}}
+<a href="/auth/view-details/{{_id}}">View Details</a>
+<a href="/auth/join/{{_id}}" class="btn btn-sm btn-dark">Join</a> 
+{{/each}}
+<a href="/auth/plans">All plans</a>
 <a href="/auth/new-plan">Create new plan</a>

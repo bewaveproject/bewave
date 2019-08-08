@@ -7,6 +7,7 @@ const planSchema = new Schema({
   people: [{type: Schema.Types.ObjectId, ref: 'User'}],
   description: String,
   creatorId: {type: Schema.Types.ObjectId, ref: 'User'},
+  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 }, {
   timestamps: {
     createdAt: 'created_at',

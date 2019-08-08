@@ -454,29 +454,51 @@ window.onload = () =>
                       chart.scrollbarX = new am4core.Scrollbar();
                     }) 
                     var markers = [];
-                    
-                    
+                    const myLocation = {
+                      lat,
+                      lng
+                  }
+                  map.setCenter(myMarker),
+                  map.setZoom(8);
+                  myMap.setCenter(myMarker)
+                  var myMarker = new google.maps.Marker({
+                    map: myMap,
+                    center: {lat: lat,lng: lng},
+                    zoom: 15,
+                    position: {lat: lat,lng: lng},
+                    title: 'yuh',
+                    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png(1 kB)'
+                    })
                     const addMarker = data => {
-                      //console.log(data);
-                      for (let i = 0; i < data.data.length; i++) {
-                        var position = new google.maps.LatLng(
-                          lat,
-                          lng
-                          )
-                          
-                          var myMarker = new google.maps.Marker({
-                            map: myMap,
-                            center: {lat: lat,lng: lng},
-                            zoom: 15,
-                            position: {lat: lat,lng: lng},
-                            title: 'yuh',
-                            icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-                            
-                          })
-                          myMap.setCenter({lat: lat,lng: lng})
-                          markers.push(myMarker);
-                        }
-                      }
+                                //console.log(data);
+                    for (let i = 0; i < data.data.length; i++) {
+                    var position = new(
+                    lat,
+                    lng
+                                  );
+                    myMap.setCenter({lat: lat,lng: lng})
+                    markers.push(myMarker);
+                       }
+                  };
+                    const setMapOnAll = map => {
+                    for (var i = 0; i < markers.length; i++) {
+          //console.log(markers[i]);
+                     markers[i].setMap(map);
+                 }
+                };
+      // Removes the markers from the map, but keeps them in the array.
+                  const clearMarkers = () => {
+                  setMapOnAll(null);
+                  };
+      // Shows any markers currently in the array.
+                  const showMarkers = () => {
+                  setMapOnAll(map);
+                    };
+      // Deletes all markers in the array by removing references to them.
+                      const deleteMarkers = () => {
+                      clearMarkers();
+                       markers = [];
+                         };
                       
                     }
                     console.log(results)
