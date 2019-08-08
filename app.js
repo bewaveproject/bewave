@@ -15,7 +15,7 @@ const flash      = require("connect-flash");
     
 
 mongoose
-  .connect('mongodb://localhost/Bewave', {useNewUrlParser: true})
+  .connect(process.env.DB_REMOTE, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -58,6 +58,8 @@ mongoose
 
   // default value for title local
   app.locals.title = 'Express - Generated with IronGenerator';
+  app.locals.apiGoogle = process.env.GOOGLE_API;
+
   
   // Enable authentication using session + passport
 app.use(session({

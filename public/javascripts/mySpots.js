@@ -14,7 +14,7 @@ window.onload = () =>
   var els = document.getElementsByClassName('spot-names')
 
   Array.from(els).forEach(elm =>{
-  axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${elm.innerHTML}&key=AIzaSyAQn79ofulVcJxbKOb1tGmPG6GuA7bPojM`)
+  axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${elm.innerHTML}&key=${process.env.GOOGLE_API}`)
   .then(response => {
       console.log(response.data.results[0].address_components[0].short_name)
       lat = response.data.results[0].geometry.location.lat
@@ -22,7 +22,7 @@ window.onload = () =>
       fetch(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}&params=waveHeight`, {
           headers: 
           {
-            'Authorization': '18c0a7e6-b502-11e9-91a6-0242ac130004-18c0a944-b502-11e9-91a6-0242ac130004'
+            'Authorization': process.env.STORMGLASS_API
           }
         })
         .then((response) => response.json())

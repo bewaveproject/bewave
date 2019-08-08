@@ -303,7 +303,7 @@ window.onload = () =>
        }
 
         let address = document.getElementById('address-input').value
-        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyAQn79ofulVcJxbKOb1tGmPG6GuA7bPojM`)
+        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.GOOGLE_API}`)
         .then(response => {
           addMarker(response)
           setMapOnAll(myMap)
@@ -313,7 +313,7 @@ window.onload = () =>
             fetch(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}&params=waveHeight,swellHeight,swellDirection,waterTemperature,airTemperature`, {
                  headers: 
                  {
-                   'Authorization': '18c0a7e6-b502-11e9-91a6-0242ac130004-18c0a944-b502-11e9-91a6-0242ac130004'
+                   'Authorization': process.env.STORMGLASS_API
                  }
                 }) 
                 .then((response) => response.json())
@@ -463,7 +463,7 @@ window.onload = () =>
                   fetch(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}&start=${start}&end=${end}&params=${param}`,{
                     headers: 
                     {
-                      'Authorization': '18c0a7e6-b502-11e9-91a6-0242ac130004-18c0a944-b502-11e9-91a6-0242ac130004'
+                      'Authorization': process.env.STORMGLASS_API
                     }
                   })
                   .then(response => response.json())
