@@ -8,59 +8,57 @@
       <img class = "photos" src = {{photo}}> <style>.photos{width: 40%; margin: 10px}</style>
       {{/each}}
     </div>
-       <div class="col-md-4">
 
-      <form action="/search/address" method="get">
+    
+       <div class="col-md-6">
+      <form action="/search/address" method="get" class="titulos">
         <h2>Introduce spot to get wave height</h2>
         <div class="form-group">
-          <label for="address-input">Address</label>
+          <label for="address-input" id="casilla"></label>
           <input name="address" type="text" class="form-control" id="address-input">
-        </div>
-
         <button type="submit" class="btn btn-submit"  id="submit-address">Search address</button>
-
-        <figure id="map"></figure>
+        </div>
+         <figure id="map"></figure>
+       
 </div>
 
 
-<div class="container">
-  <div class="row justify-content-center">
-
+<div class="container quitar">
+  <div class="row align-content-center">
     <div class="col-md-2">
- <article class="quitar"> 
+ <article > 
   <h2> Wave Height</h2>
-<svg id="fillgauge1" width="65%" height="250"></svg>
+<svg id="fillgauge1" width="70%" height="250"></svg>
+</h3><p id="sumWaveHeight">{{sumWaveHeight}} </p>
 </article>
 </div>
 <div class="col-md-2">
 <article> 
   <h2> Swell Height</h2>
-<svg id="fillgauge2" width="65%" height="250"></svg>
+<svg id="fillgauge2" width="70%" height="250"></svg>
+</h3><p id="sumSwellHeight">{{sumSwellHeight}}  </p>
 </article>
 </div>
-
 <div class="col-md-2">
 <article> 
-  <h2> Swell Direction</h2>
-<svg id="fillgauge3" width="65%" height="250"></svg>
+  <h2> Swell Direction </h2>
+<svg id="fillgauge3" width="70%" height="250"></svg>
+</h3><p id = "sumSwellDirection">{{sumWaterTemperature}}  </p>
 </article>
-
 </div>
-
-
 <div class="col-md-2">
 <article> 
-  <h2> Water Temperature</h2>
-<svg id="fillgauge4" width="65%" height="250"></svg>
+  <h2> H2o Temperature</h2>
+<svg id="fillgauge4" width="70%" height="250"></svg>
+</h3><p id = "sumWaterTemperature">{{sumWaterTemperature}}  </p>
 </article>
-
 </div>
-
-
 <div class="col-md-2">
 <article> 
   <h2> Air Temperature</h2>
-<svg id="fillgauge5" width="65%" height="250"></svg>
+<svg id="fillgauge5" width="70%" height="250"></svg>
+</h3><p id = "sumAirTemperature">{{sumAirTemperature}} </p> 
+
 </article>
 </div>
 
@@ -68,14 +66,19 @@
 </div>
 <div class="container">
 
-  <div class="row-md-8">
+  <div class="row-md-12">
+
+    <div id="chartdiv"></div>
 
     </div>
-        <h3>Result: </h3><p id="sumWaveHeight">{{sumWaveHeight}} </p>
-                    </h3><p id="sumSwellHeight">{{sumSwellHeight}}  </p>
-                    </h3><p id = "sumSwellDirection">{{sumWaterTemperature}}  </p>
-                    </h3><p id = "sumWaterTemperature">{{sumWaterTemperature}}  </p>
-                    </h3><p id = "sumAirTemperature">{{sumAirTemperature}} </p> 
+  
+                    
+                    
+                    
+                    
+                    
+  
+
 
   <script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
     <script src="/javascripts/liquidFillGauge.js" language="JavaScript"></script>
@@ -87,7 +90,9 @@
 {{!-- <svg id="fillgauge6" width="30%" height="250"></svg> --}}
 
 
-  
+  <script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
     
   
   
