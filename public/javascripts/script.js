@@ -1,5 +1,7 @@
 window.onload = () =>
 {
+  var markers = [];
+
   let lat
   let lng
     const myMap = new google.maps.Map(
@@ -248,20 +250,70 @@ window.onload = () =>
 
             })
 
-    document.getElementById("submit-address").onclick = (e) => {
+            const addMarker = data => {
       
+              for (let i = 0; i < data.data.results.length; i++) {
+                var position = new google.maps.LatLng(
+                 
+                  data.data.results[i].geometry.location.lat,
+                  data.data.results[i].geometry.location.lng
+                );
+              
+              var myMarker = new google.maps.Marker({
+              map: myMap,
+              // center: {lat: lat,lng: lng},
+              zoom: 15,
+              position: position,
+              title: 'yuh',
+              icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+
+              })
+              markers.push(myMarker);
+            }
+          };
+  const setMapOnAll = map => {
+    for (var i = 0; i < markers.length; i++) {
+    console.log(markers[i]);
+      markers[i].setMap(map);
+    }
+  };
+// Removes the markers from the map, but keeps them in the array.
+            const clearMarkers = () => {
+            setMapOnAll(null);
+            };
+// Shows any markers currently in the array.
+            const showMarkers = () => {
+            setMapOnAll(map);
+              };
+// Deletes all markers in the array by removing references to them.
+                const deleteMarkers = () => {
+                clearMarkers();
+                 markers = [];
+                   };
+
+    document.getElementById("submit-address").onclick = (e) => {    
       e.preventDefault()
+      deleteMarkers()
+      // function clearOverlays() {
+      //   for (var i = 0; i < markersArray.length; i++ ) {
+      //     markersArray[i].setMap(null);
+      //   }
+      //   markersArray.length = 0;
+      // }
+      // clearOverlays();
+     
   
        let quitar = document.getElementsByClassName("quitar")
        for (let i = 0; i < quitar.length; i++){
            quitar[i].classList.remove("quitar")
        }
-       
 
         console.log(document.getElementById('address-input').value)
         let address = document.getElementById('address-input').value
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyAQn79ofulVcJxbKOb1tGmPG6GuA7bPojM`)
         .then(response => {
+          addMarker(response)
+          setMapOnAll(myMap)
             const lat = response.data.results[0].geometry.location.lat
             const lng = response.data.results[0].geometry.location.lng
             console.log(lat,lng)
@@ -467,75 +519,57 @@ chart.scrollbarX = new am4core.Scrollbar();
   let end
   let results = [0,1,2,3,4,5,6,7,8,9,10,11]
   let join = ''
-  for (let i = 0; i < 12; i++ ){
-  start = [ '2', '0', '1', '8', '-', '0', '1', '-', '1', '5' ]
-  end = [ '2', '0', '1', '8', '-', '0', '1', '-', '1', '5' ]
-  if ( i < 10){
-  start[6] = (i).toString()
-  end[6] = (i + 1).toString()
-  }
-  else if(i > 9){
-    start[5] = '1'
-    start[6] = (i - 10).toString()
-    end[5] = '1'
-    end[6] = (i + 1 - 10).toString()
-  }
-  start = start.join('').toString()
-  end = end.join('').toString()
+//   for (let i = 0; i < 12; i++ ){
+//   start = [ '2', '0', '1', '8', '-', '0', '1', '-', '1', '5' ]
+//   end = [ '2', '0', '1', '8', '-', '0', '1', '-', '1', '5' ]
+//   if ( i < 10){
+//   start[6] = (i).toString()
+//   end[6] = (i + 1).toString()
+//   }
+//   else if(i > 9){
+//     start[5] = '1'
+//     start[6] = (i - 10).toString()
+//     end[5] = '1'
+//     end[6] = (i + 1 - 10).toString()
+//   }
+//   start = start.join('').toString()
+//   end = end.join('').toString()
 
-  fetch(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}&start=${start}&end=${end}&params=waveHeight`,{
-    headers: 
-    {
-      'Authorization': '18c0a7e6-b502-11e9-91a6-0242ac130004-18c0a944-b502-11e9-91a6-0242ac130004'
-    }
-  })
-  .then(response => response.json())
-  .then(jsonData => results[i] = (jsonData.hours[0].waveHeight[0].value))
-  .then(x=> console.log(results))
-}
-                var markers = [];
+//   fetch(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}&start=${start}&end=${end}&params=waveHeight`,{
+//     headers: 
+//     {
+//       'Authorization': '18c0a7e6-b502-11e9-91a6-0242ac130004-18c0a944-b502-11e9-91a6-0242ac130004'
+//     }
+//   })
+//   .then(response => response.json())
+//   .then(jsonData => results[i] = (jsonData.hours[0].waveHeight[0].value))
+//   .then(x=> console.log(results))
+// }
 
-              
-                const addMarker = data => {
-                            //console.log(data);
-                for (let i = 0; i < data.data.length; i++) {
-                var position = new google.maps.LatLng(
-                lat,
-                lng
-                              );
 
-                var myMarker = new google.maps.Marker({
-                map: myMap,
-                center: {lat: lat,lng: lng},
-                zoom: 15,
-                position: {lat: lat,lng: lng},
-                title: 'yuh',
-                icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+              // var markers = [];
 
-                })
-                myMap.setCenter({lat: lat,lng: lng})
-                markers.push(myMarker);
-                   }
-              };
-                const setMapOnAll = map => {
-                for (var i = 0; i < markers.length; i++) {
-      //console.log(markers[i]);
-                 markers[i].setMap(map);
-             }
-            };
-  // Removes the markers from the map, but keeps them in the array.
-              const clearMarkers = () => {
-              setMapOnAll(null);
-              };
-  // Shows any markers currently in the array.
-              const showMarkers = () => {
-              setMapOnAll(map);
-                };
-  // Deletes all markers in the array by removing references to them.
-                  const deleteMarkers = () => {
-                  clearMarkers();
-                   markers = [];
-                     };
+
+
+              // var myMarker = new google.maps.Marker({
+              //   map: myMap,
+              //   center: {lat: lat,lng: lng},
+              //   zoom: 15,
+              //   position: {lat: lat,lng: lng},
+              //   title: 'yuh',
+              //   icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+
+              //   })
+                
+              //   markersArray.push(myMarker)
+
+
+           
+
+
+  
+
+
 
 
 
