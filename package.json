@@ -7,7 +7,6 @@
     "startglobe": "react-scripts start",
     "dev": "DEBUG=starter-code:* nodemon ./bin/www",
     "dev-windows": "nodemon ./bin/www",
-    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
@@ -40,10 +39,8 @@
     "nodemailer": "^6.3.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "react": "latest",
     "serve-favicon": "^2.5.0",
-    "three": "latest",
-    "three-orbitcontrols": "latest",
+
     "to": "^0.2.9"
   },
   "devDependencies": {
