@@ -23,10 +23,12 @@
     </div>  
 </div>
 </div> --}}
-   <style>#photo-saludo{width:10%}button{align-items:center;align-content:center}body{background: url({{user.photo}});background-repeat: no-repeat; background-size:cover}img{width:100%}.profile-img{width:30%}</style>
+   <style>.btn{border:solid}#botones-perfil{display:flex; justify-content: space-evenly; padding: 10px 50px}#photo-saludo{width:10%}button{align-items:center;align-content:center}body{background: url({{user.photo}});background-repeat: no-repeat; background-size:cover}img{width:100%}.profile-img{width:30%}</style>
+<span id = "botones-perfil">
 <button id ="profile-photos">
     <img src="../img/signo-de-shaka.png" alt="" id ="photo-saludo">
 </button>
+</span>
 <div class="container justify-content-center">
   <div class="row fila-fotos align-items-center" id ="chaos">
       {{#each user.posts}}

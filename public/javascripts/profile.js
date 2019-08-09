@@ -1,5 +1,12 @@
 document.getElementById("profile-photos").onclick = (e) =>
 {
+    if(document.getElementById('chaos').classList[1]==('fila-fotos')){
     document.getElementById('chaos').classList.remove('fila-fotos')
-    document.getElementById('profile-photos').innerHTML += `<a class="nav-link btn btn-dark" id="planet-button" href="/auth/myPlanet"> Planet</a>`
+    document.getElementById('botones-perfil').innerHTML += `<a class="nav-link btn" id="planet-button" href="/auth/myPlanet"> Planet</a>`
+    document.getElementById('botones-perfil').innerHTML += `<a class="nav-link btn" id="planet-button" href="/auth/myFriends"> Friends</a>`
+    document.getElementById('botones-perfil').innerHTML += `<a class="nav-link btn" id="planet-button" href="/auth/myPlans"> Plans</a>`
+    }
+    else{
+    document.getElementById('chaos').classList.add('fila-fotos')
+    }
 }

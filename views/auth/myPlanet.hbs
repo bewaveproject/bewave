@@ -1,9 +1,25 @@
-<h1>Hello, I am your planet</h1>
-<p>{{user.username}}</p>
-<figure id="map"></figure>
+
+<h1 class = "horror">{{user.username}}'s Planet</h1>
+
+<div class ="horror"><style>.delete{position:absolute;right:100px}span{font-weight:100}.add-spot-button{border:solid; justify-content:center;display: flex; width:150px; margin: 20px auto}li{position:relative;display:flex;justify-content:space-between;list-style: none; margin-top: 20px}.myPlanetInfo{margin: 0 145px; align-items: center}.horror{display:flex;justify-content:center}</style>
+<figure id="map" class ="myPlanet"></figure>
+</div>
+<div class "myPlanetInfo">
+<h3 class="myPlanetInfo">Current wave height</h3> <hr class="myPlanetInfo">
 {{#each user.spots}}
-<p class = "spot-names">{{name}}<a href="/auth/spot/delete/{{_id}}">Delete</a> </p>
+{{!-- <div class="spot-names container myPlanetInfo"">
+    <div class="row">
+        <div class="col-12">
+            <h3>{{name}}</h3>
+            <span class = "sumWaveHeight"></span>
+            <a href="/auth/spot/delete/{{_id}}">Delete</a> </h3>
+        </div>
+    </div>
+</div> --}}
+<li><div class = " spot-names myPlanetInfo"><h3>{{name}}:  <span class = "sumWaveHeight"></span></h3>  <a class = "delete" href="/auth/spot/delete/{{_id}}">Delete</a> </div></li>
 {{/each}}
-<a href="/auth/newSpot" class = "btn btn-dark">Add new spot</a>
+
+<a href="/auth/newSpot" class = "add-spot-button btn">Add new spot</a>
+</div>
 
 <script src="/javascripts/mySpots.js"></script>

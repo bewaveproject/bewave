@@ -18,7 +18,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body><style>.btn-secondary{color:black}</style>
   <nav class="navbar navbar-expand-lg" id="navegador">
     <a class="navbar-brand" href="/">Bewave</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -63,10 +63,13 @@
       </ul>
     </div>
     {{/if}}
-
-
   </nav>
+
   {{{body}}}
 
+
+</body>
   <script src= "https://maps.googleapis.com/maps/api/js?key={{apiGoogle}}"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</html>
