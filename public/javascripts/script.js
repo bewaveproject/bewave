@@ -1,6 +1,7 @@
 window.onload = () =>
 {
   var markers = [];
+  var chartMarkers = [];
 
   let lat
   let lng
@@ -285,6 +286,16 @@ window.onload = () =>
                  markers = [];
                    };
 
+
+
+                  // const infoExtract = (array,) => {
+                  // let sum = 0
+                  // array.forEach(elm => (sum += elm.value))
+                  // sum = parseFloat(sum / array.length).toFixed(2)
+                  // }
+
+
+
     document.getElementById("submit-address").onclick = (e) => {    
       e.preventDefault()
       deleteMarkers()
@@ -318,6 +329,8 @@ window.onload = () =>
                 }) 
                 .then((response) => response.json())
                 .then(jsonData =>{
+           
+
 
                   let  sumWaveHeight = 0
                   jsonData.hours[0].waveHeight.forEach(elm => (sumWaveHeight += elm.value))
@@ -341,13 +354,16 @@ window.onload = () =>
                   jsonData.hours[0].airTemperature.forEach(elm => (sumAirTemperature += elm.value))
                   sumAirTemperature = Math.round(sumAirTemperature / jsonData.hours[0].airTemperature.length)
                   
-                  
+  
                   document.getElementById("sumWaveHeight").innerHTML = sumWaveHeight
                   document.getElementById("sumSwellHeight").innerHTML = sumSwellHeight
                   document.getElementById("sumSwellDirection").innerHTML = sumSwellDirection
                   document.getElementById("sumWaterTemperature").innerHTML = sumWaterTemperature
                   document.getElementById("sumAirTemperature").innerHTML = sumAirTemperature
                   
+
+
+
                   //--------------------------------PARAMS CHARTS BEGINS------------------------------------------------
                   
                   var gauge1 = loadLiquidFillGauge("fillgauge1", sumWaveHeight, config1);
@@ -517,44 +533,10 @@ window.onload = () =>
                   // map.setCenter(myMarker),
                   // map.setZoom(8);
                   // myMap.setCenter(myMarker)
-                  var myMarker = new google.maps.Marker({
-                    map: myMap,
-                    center: {lat: lat,lng: lng},
-                    zoom: 15,
-                    position: {lat: lat,lng: lng},
-                    title: 'yuh',
-                    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png(1 kB)'
-                    })
-                    const addMarker = data => {
-                                //console.log(data);
-                    for (let i = 0; i < data.data.length; i++) {
-                    var position = new(
-                    lat,
-                    lng
-                                  );
-                    myMap.setCenter({lat: lat,lng: lng})
-                    markers.push(myMarker);
-                       }
-                  };
-                    const setMapOnAll = map => {
-                    for (var i = 0; i < markers.length; i++) {
-          //console.log(markers[i]);
-                     markers[i].setMap(map);
-                 }
-                };
+                
+             
       // Removes the markers from the map, but keeps them in the array.
-                  const clearMarkers = () => {
-                  setMapOnAll(null);
-                  };
-      // Shows any markers currently in the array.
-                  const showMarkers = () => {
-                  setMapOnAll(map);
-                    };
-      // Deletes all markers in the array by removing references to them.
-                      const deleteMarkers = () => {
-                      clearMarkers();
-                       markers = [];
-                         };
+             
                         }
                       
                     console.log(results)
