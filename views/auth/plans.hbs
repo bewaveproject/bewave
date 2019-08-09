@@ -2,21 +2,23 @@
 <a href="/auth/plans" class ="btn">All plans</a>
 <a href="/auth/new-plan" class ="btn">Create new plan</a></div>
 {{#each plans}}
-<div class="container plans"> <style>.place{font-size:4em}.plansTitle{display:flex; justify-content:space-around; align-items:center}.plans{margin-top: 20px;border:solid; justify-content:center}</style>
+<div class="container plans"> <style>.place{font-size:4em}.plansTitle{display:flex; justify-content:space-around; align-items:center}.plans{margin-top: 20px;border:solid; justify-content:center; padding: 20px}</style>
     <div class="row">
         <div class="col-12">
 <h2 class="place">Place: {{place}}</h2>
 <p>Date: {{date}}</p>
 <p>Description: {{description}}</p>
 <p>Plan created by: <a href="/profile/{{creatorId._id}}">{{creatorId.username}}</a></p>
+<h3>Dirty Comments:</h3>
 {{#each comments}}
-<p><a href="/auth/profile/{{creatorId}}">{{creatorName}}</a>: {{comment}} </p>
+<p><a href="/profile/{{creatorId}}">{{creatorName}}</a>: {{comment}} </p>
 {{/each}}
+<h3>Bad People going:</h3>
 {{#each people}}
-<p>Gentuza que se apunta al plan: <a href="/auth/profile/{{_id}}">{{username}}</a> </p>
+<p> <a href="/profile/{{_id}}">{{username}}</a> </p>
 {{/each}}
 <a href="/auth/view-details/{{_id}}" class ="btn">View Details</a>
-<a href="/auth/join/{{_id}}" class="btn btn-sm">Join</a> 
+<a href="/join/{{_id}}" class="btn btn-sm">Join</a> 
 </div>
 </div>
 </div>

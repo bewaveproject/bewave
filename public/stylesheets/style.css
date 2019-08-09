@@ -32,6 +32,9 @@ a:hover{
 a{
     text-decoration:none; color:black
 }
+.horror{
+    display:flex;justify-content:center
+}
 .btn {
     border:solid;
     border-radius: 100;
@@ -181,12 +184,12 @@ article {
    
 }
 
-.row {
+/* .row {
     display: flex;
     justify-content: space-around;
     margin: 0;
     
-}
+} */
 .navbar-expand-lg {
 
     background-color: transparent;
@@ -309,8 +312,8 @@ article {
         font-family: Futura, sans-serif;
         font-weight: 900;
         font-size: 120px;
-        padding-left: 700px;
-        padding-top: 200px;
+        padding-left: 500px;
+        padding-top: 100px;
         margin: 0 auto;
         z-index: 1;
         position: absolute;
