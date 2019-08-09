@@ -9,7 +9,7 @@ router.get('/search', (req, res, next) => {
     Post.find({})
     .then(photos => {
       let array = []
-      for(let i = photos.length; i > photos.length - 7; i--){
+      for(let i = photos.length-1; i > photos.length - 7; i--){
         array.push(photos[i])
       }
       res.render('search', {photos: array, user: req.user })
