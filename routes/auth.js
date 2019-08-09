@@ -76,7 +76,8 @@ router.get('/profile', ensureLogin.ensureLoggedIn(), (req,res)=> {
     res.render("auth/profile", { user: userFeatures })
   })
 
-  router.get('/profile/:id', ensureLogin.ensureLoggedIn(), (req,res)=> {
+router.get('/profile/:id', (req,res)=> {
+  console.log('hola')
   User.findById(req.params.id)
   .populate('posts')
   .populate('spots')

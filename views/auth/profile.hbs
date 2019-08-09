@@ -1,4 +1,4 @@
-<div class="container">
+{{!-- <div class="container">
 
   <div class="row align-items-center">
 
@@ -20,18 +20,21 @@
     </ul>
     </div>
     <div class="col"></div>
-    <img class= "profile-img" src="{{user.photo}}" alt=""><style>img{width:100%; padding-top: 10px}.profile-img{width:30%}</style>
     </div>  
 </div>
-</div>
-<div class="container">
-  <div class="row">
+</div> --}}
+   <style>#photo-saludo{width:10%}button{align-items:center;align-content:center}body{background: url({{user.photo}});background-repeat: no-repeat; background-size:cover}img{width:100%}.profile-img{width:30%}</style>
+<button id ="profile-photos">
+    <img src="../img/signo-de-shaka.png" alt="" id ="photo-saludo">
+</button>
+<div class="container justify-content-center">
+  <div class="row fila-fotos align-items-center" id ="chaos">
       {{#each user.posts}}
-    <div class="col-4 order-last">
+    <div class="col-3 order-first">
         <img  src="{{photo}}" alt="">
     </div>
       {{/each}}
   </div>
 </div>
-
 {{!-- <style>body{background: url("/mar.jpg") no-repeat center / cover}</style> --}}
+  <script src="/javascripts/profile.js"></script>

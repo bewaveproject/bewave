@@ -303,7 +303,7 @@ window.onload = () =>
        }
 
         let address = document.getElementById('address-input').value
-        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.GOOGLE_API}`)
+        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyAQn79ofulVcJxbKOb1tGmPG6GuA7bPojM`)
         .then(response => {
           addMarker(response)
           setMapOnAll(myMap)
@@ -313,7 +313,7 @@ window.onload = () =>
             fetch(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}&params=waveHeight,swellHeight,swellDirection,waterTemperature,airTemperature`, {
                  headers: 
                  {
-                   'Authorization': process.env.STORMGLASS_API
+                   'Authorization': '18c0a7e6-b502-11e9-91a6-0242ac130004-18c0a944-b502-11e9-91a6-0242ac130004'
                  }
                 }) 
                 .then((response) => response.json())
@@ -463,12 +463,15 @@ window.onload = () =>
                   fetch(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}&start=${start}&end=${end}&params=${param}`,{
                     headers: 
                     {
-                      'Authorization': process.env.STORMGLASS_API
+                   'Authorization': '18c0a7e6-b502-11e9-91a6-0242ac130004-18c0a944-b502-11e9-91a6-0242ac130004'
                     }
                   })
                   .then(response => response.json())
                   .then(jsonData => {
-                    if(param == 'waveHeight') results[i] = (jsonData.hours[0].waveHeight[0].value)
+                    if(param == 'waveHeight') {
+                      console.log((jsonData.hours[0].waveHeight[0].value))
+                      results[i] = (jsonData.hours[0].waveHeight[0].value)
+                    }
                     else if(param =='swellHeight') results[i] = (jsonData.hours[0].swellHeight[0].value)
                     else if(param =='airTemperature') results[i] = (jsonData.hours[0].airTemperature[0].value)
                     else if(param =='waterTemperature') results[i] = (jsonData.hours[0].waterTemperature[0].value)
@@ -511,9 +514,9 @@ window.onload = () =>
                       lat,
                       lng
                   }
-                  map.setCenter(myMarker),
-                  map.setZoom(8);
-                  myMap.setCenter(myMarker)
+                  // map.setCenter(myMarker),
+                  // map.setZoom(8);
+                  // myMap.setCenter(myMarker)
                   var myMarker = new google.maps.Marker({
                     map: myMap,
                     center: {lat: lat,lng: lng},
@@ -552,8 +555,8 @@ window.onload = () =>
                       clearMarkers();
                        markers = [];
                          };
+                        }
                       
-                    }
                     console.log(results)
                   })
                     .catch(err => console.log(err))

@@ -23,6 +23,10 @@ h2{
     font-size: 1.3em;
 }
 
+img{
+    padding-top: 0
+}
+
 #chartdiv {
   width: 100vh;
   height: 500px;
@@ -58,7 +62,9 @@ article {
 
     display: flex;
     /* padding: 30px;  */
-    text-align: center
+    text-align: center;
+    height: 100vh;
+    align-items: center
     
 }
 .form-control{
@@ -85,7 +91,7 @@ article {
 }
 
 
-
+.col-3{padding:0; margin:0}
 
 .quitar {
     display: none;
@@ -95,7 +101,7 @@ article {
 .row {
     display: flex;
     justify-content: space-around;
-       
+    margin: 0
     
 }
 .navbar-expand-lg {
@@ -141,6 +147,8 @@ article {
     
 }
 
+
+
 #video_background {
     position: absolute;
     bottom: 0px;
@@ -176,3 +184,10 @@ article {
         color: whitesmoke;
         align-content: center;
     }
+
+#profile-photos {
+    background: transparent;
+    justify-content: centers;
+    padding: 0;
+    border:0
+}
