@@ -12,7 +12,7 @@ router.get('/search', (req, res, next) => {
       for(let i = photos.length; i > photos.length - 7; i--){
         array.push(photos[i])
       }
-      res.render('search', {photos: array})
+      res.render('search', {photos: array, user: req.user })
     })
 })
 

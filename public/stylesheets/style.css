@@ -15,7 +15,20 @@ h1{
     font-weight: 200;
     font-size: 5em
 }
+a:hover{
+    color:black
+}
+a{
+    text-decoration:none; color:black
+}
+.btn {
+    border:solid;
+    border-radius: 100;
+    background: transparent;
+    align-items:center;
+    height: 40px
 
+}
 h2{
     text-align: center;
     font-weight: 100;
@@ -64,13 +77,19 @@ article {
     display: inline
 
 }
+.myPlanet {
+    width: 80%;
+    height: 70vh
+}
+
+
 
 .container {
 
     display: flex;
     /* padding: 30px;  */
     text-align: center;
-    height: 100vh;
+    height:85vh;
     align-items: center
     
 }
@@ -239,9 +258,6 @@ article {
 
 
 
-    html {
-        background: white;
-      }
 
       
       

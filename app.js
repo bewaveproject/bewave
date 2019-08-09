@@ -83,6 +83,10 @@ require('./passport')(app);
   const searchRoutes = require('./routes/search.routes')
   app.use('/', searchRoutes)
 
+
+  const profileRoutes = require('./routes/profile')
+  app.use('/profile', profileRoutes)
+
   module.exports = app
 
   

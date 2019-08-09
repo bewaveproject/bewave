@@ -76,17 +76,17 @@ router.get('/profile', ensureLogin.ensureLoggedIn(), (req,res)=> {
     res.render("auth/profile", { user: userFeatures })
   })
 
-router.get('/profile/:id', (req,res)=> {
-  console.log('hola')
-  User.findById(req.params.id)
-  .populate('posts')
-  .populate('spots')
-  .populate('plans')
-  .then(userFeatures => {
-    console.log(userFeatures)
-    res.render("auth/otherProfile", { user: userFeatures })
-  })
-})
+// router.get('/:id', (req,res)=> {
+//   console.log('hola')
+//   // User.findById(req.params.id)
+//   // // .populate('posts')
+//   // // .populate('spots')
+//   // // .populate('plans')
+//   // .then(userFeatures => {
+//   //   console.log(userFeatures)
+//   //   res.render("auth/otherProfile", { user: userFeatures })
+//   // })
+// })
 
 router.get('/profile/:id/planet', ensureLogin.ensureLoggedIn(), (req,res)=> {
   User.findById(req.params.id)
