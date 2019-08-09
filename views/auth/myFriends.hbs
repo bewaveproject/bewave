@@ -1,9 +1,15 @@
-<h1>Hello, I am your friends</h1>
+
+<div class="text-center" id="signup">
+
+
+<h2 class="signup">Hello, I am your friends</h2>
 <p>{{user.username}}</p>
   <form action="/auth/myFriends" method="post">
         <div class="form-group">
           <label for="name">Search</label>
-          <input type="text" name="name" class="name">
+          <br><br>
+          <input type="text" name="name" class="btn btn-submit"  id="submit-address">
+          <br><br>
           <button type="submit">Search</button>
         </div>
   </form>
@@ -12,3 +18,7 @@
 {{/each}}
 
 <style>.prof-photo{width:10%}</style>
+
+
+
+</div>

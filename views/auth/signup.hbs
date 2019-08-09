@@ -5,16 +5,20 @@
   <h2 class="signup">Signup</h2>
 <form action="/auth/signup" method="POST" id="form-container" enctype="multipart/form-data" >
   <label for="username">Username</label>
+  <br><br>
   <input id="username" type="text" name="username" class="btn btn-submit"  id="submit-address"  placeholder="Mike Stewart">
   <br><br>
-  <label for="email-input">Email</label>
+  <label for="email-input" >Email</label>
+  <br><br>
   <input id="email-input" type="email" name="email" class="btn btn-submit"  id="submit-address" placeholder="Rob Machado@...">
   <br><br>
   <div>
     <label>Foto de perfil</label>
+    <br><br>
     <input type="file" name="photo" class="btn btn-submit"  id="submit-address"><br><br>
   </div>
   <label for="password">Password</label>
+  <br><br>
   <input id="password" type="password" name="password" class="btn btn-submit"  id="submit-address" placeholder="Your password">
   <br>
   {{#if message }}
@@ -22,6 +26,7 @@
   {{/if}}
   <br><br>
   <button class="btn btn-submit"  id="submit-address">Create account</button>
+  <br><br>
   <p class="account-message">
     Do you already have an account?
     <a href="/auth/login">Login</a>

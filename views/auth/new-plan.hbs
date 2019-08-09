@@ -1,19 +1,27 @@
-<h1>Create new plan</h1> <hr>
+<div class="text-center" id="signup">
+
+
+<h2 class="signup">Create new plan</h2> <hr>
+
+
 <div class="container">
   <div class="row">
     <div class="col-sm-6 centered-form">
       <form action="/auth/new-plan" method="post" >
         <div class="form-group">
           <label for="place-input">Place</label>
-          <input type="text" name="place" class="place-input">
+          <br><br>
+          <input type="text" name="place" class="btn btn-submit"  id="submit-address">
         </div>
         <div class="form-group">
           <label for="date-input">When?</label>
-          <input type="date" name="date" class="date-input">
+          <br><br>
+          <input type="date" name="date" class="btn btn-submit"  id="submit-address">
         </div>
         <div class="form-group">
           <label for="description-input">What is it about?</label>
-          <input type="textarea" name="description" class="description-input">
+          <br><br>
+          <input type="textarea" name="description" class="btn btn-submit"  id="submit-address">
         </div>
         <button type="submit">Post</button>
       </form>
@@ -24,3 +32,5 @@
 <a href="/auth/plans">Plans</a>
 
 <h2>{{plan.place}}</h2>
+
+</div>
