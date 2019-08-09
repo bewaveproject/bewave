@@ -3,7 +3,7 @@
   <div class="row">
 
     <div class="col-md-6">
-      <h1>Bewave</h1>
+      {{!-- <h1>Bewave</h1> --}}
       {{#each photos}}
       <img class = "photos" src = {{photo}}> <style>.photos{width: 40%; margin: 10px}</style>
       {{/each}}
@@ -12,7 +12,7 @@
     
        <div class="col-md-6">
       <form action="/search/address" method="get" class="titulos">
-        <h2>Introduce spot to get wave height</h2>
+        <h2 class="titulo">Introduce spot to get wave height</h2>
         <div class="form-group">
           <label for="address-input" id="casilla"></label>
           <input name="address" type="text" class="form-control" id="address-input">

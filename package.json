@@ -41,6 +41,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "react": "latest",
+    "sass": "^1.22.9",
     "serve-favicon": "^2.5.0",
     "three": "latest",
     "three-orbitcontrols": "latest",
