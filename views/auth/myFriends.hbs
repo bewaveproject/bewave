@@ -1,5 +1,5 @@
-<h1>Hello, I am your friends</h1>
-<p>{{user.username}}</p>
+<h1 class = "horror">{{user.username}}'s friends</h1>
+
   <form action="/auth/myFriends" method="post">
         <div class="form-group">
           <label for="name">Search</label>
@@ -7,8 +7,20 @@
           <button type="submit">Search</button>
         </div>
   </form>
+  <div class="container">
+    <div class="row align-items-center">
 {{#each user.friends}}
-<p><img class = "prof-photo"src={{photo}}> <a href="/auth/profile/{{_id}}">{{username}}</a> </p>
+      <div class="col-6">
+      <h3 class = "yeah"><a class ="space" href="/profile/{{_id}}">{{username}}</a></h3> 
+      </div>
+      <div class="col-6">
+      <a class ="space" href="/profile/{{_id}}"><img class = "prof-photo"src={{photo}}> </a> 
+      </div>
+
 {{/each}}
 
-<style>.prof-photo{width:10%}</style>
+      </div>
+    </div>
+
+
+<style>.prof-photo{width:30%;margin:20px}.yeah{display:block; padding: 20px;}</style>

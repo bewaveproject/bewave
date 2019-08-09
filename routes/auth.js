@@ -104,7 +104,6 @@ router.get('/myFriends', ensureLogin.ensureLoggedIn(), (req,res)=> {
   .catch(err => console.log(err))
 })
 router.post('/myFriends', (req,res)=> {
-
   User.findOne({username: req.body.name})
   .then(x=> 
     User.findByIdAndUpdate(req.user._id, {$push: {friends: x._id}}, function(err, result){if(err)console.log(err)}))
