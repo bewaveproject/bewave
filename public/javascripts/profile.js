@@ -11,3 +11,4 @@ document.getElementById("profile-photos").onclick = (e) =>
     document.getElementById('chaos').classList.add('fila-fotos')
     }
 }
+

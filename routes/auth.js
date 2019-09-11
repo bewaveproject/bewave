@@ -75,6 +75,7 @@ router.get('/profile', ensureLogin.ensureLoggedIn(), (req,res)=> {
   .then(userFeatures => {
     res.render("auth/profile", { user: userFeatures })
   })
+})
 
 // router.get('/:id', (req,res)=> {
 //   console.log('hola')
@@ -93,11 +94,12 @@ router.get('/profile/:id/planet', ensureLogin.ensureLoggedIn(), (req,res)=> {
   .populate('spots')
   .then(userFeatures => res.render("auth/myPlanet", { user: userFeatures}))
 })
-})
+
 
 //----------FRIENDS-------------
 
 router.get('/myFriends', ensureLogin.ensureLoggedIn(), (req,res)=> {
+  console.log(req.user._id)
   User.findById(req.user._id)
   .populate('friends')
   .then(userFeatures => res.render("auth/myFriends", { user: userFeatures }))

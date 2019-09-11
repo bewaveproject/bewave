@@ -294,6 +294,11 @@ article {
         color: whitesmoke;
         align-content: center;
     }
+.btn{border:solid}
+#botones-perfil{display:flex; justify-content: space-evenly; padding: 10px 50px}
+#photo-saludo{width:10%}button{align-items:center;align-content:center}
+body{background: url({{user.photo}});background-repeat: no-repeat; background-size:cover}
+img{width:100%}.profile-img{width:30%}
 
 #profile-photos {
     background: transparent;

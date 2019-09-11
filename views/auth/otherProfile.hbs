@@ -7,14 +7,19 @@
     <a href="/auth/profile/{{user._id}}/planet" class = "btn btn-dark">Planet</a>
     </div>
     <div class="col"></div> --}}
-    <style>body{background: url({{user.photo}});background-repeat: no-repeat; background-size:cover}img{width:100%}</style>
+    <style>#otherprofile-photos{background: transparent; border:0}body{background: url({{user.photo}});background-repeat: no-repeat; background-size:cover}img{width:100%}</style>
     
     {{!-- </div>  
     </div> --}}
 {{!-- </div> --}}
+<span id = "botones-perfil">
+<button id ="otherprofile-photos">
+    <img src="../img/signo-de-shaka.png" alt="" id ="photo-saludo"> 
+</button> <a href="/auth/profile/{{user._id}}/planet" class = "btn btn-dark">Planet</a>
+</span>
   <div class="contFotos">
 <div class="container justify-content-center">
-  <div class="row fila-fotos align-items-center">
+  <div class="row fila-fotos align-items-center" id ="chaos1">
       {{#each user.posts}}
     <div class="col-3">
         <img  src="{{photo}}" alt="">
@@ -24,3 +29,4 @@
   </div>
 </div>
 
+  <script src="/javascripts/otherprofile.js"></script>
